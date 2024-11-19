@@ -1,0 +1,129 @@
+body {
+  background: #131b21;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+svg#flower-frame {
+  height: 90vh;
+  width: 100%;
+}
+
+#flower-frame {
+  position: relative;
+}
+
+#flower2 {
+  /* La segunda imagen se centra en la pantalla */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#flower2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1); /* Sin escalado inicial */
+  clip-path: circle(0% at 50% 50%); /* Comienza completamente oculto */
+  animation: drawAndZoom 12s linear forwards, heartbeat 2s ease-in-out infinite 12s; /* Añadimos la animación de latidos */
+  animation-delay: 0.5s; /* Retrasa el inicio 0.5 segundos */
+}
+
+@keyframes drawAndZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1); /* Sin escalado */
+    clip-path: circle(0% at 50% 50%); /* Completamente oculto */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1); /* Sin escalado */
+    clip-path: circle(100% at 50% 50%); /* Completamente visible */
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1); /* Tamaño original */
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1); /* Aumento el tamaño */
+  }
+}
+
+.title {
+  position: absolute;
+  bottom: 0; /* Lo posiciona en la parte inferior */
+  left: 0; /* Lo posiciona en la parte izquierda */
+  padding-left: 400px; /* Añade padding a la izquierda */
+  padding-bottom: 10px; /* Añade padding en la parte inferior si lo deseas */
+  pointer-events: none; /* Evita que el texto interfiera con otros eventos del SVG */
+}
+
+/* Aplica solo a los path dentro de .title */
+.title svg path {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 1; /* Un poco más grueso para hacer el contorno más visible */
+  stroke-dasharray: 300; /* Más largo para dar más espacio al trazo */
+  stroke-dashoffset: 300; /* Inicialmente oculto */
+  animation: textAnimation 5s ease-in-out infinite;
+}
+
+/* Definición de la animación */
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 300; /* El trazo empieza completamente oculto */
+    fill: transparent; /* El relleno sigue siendo transparente */
+  }
+  50% {
+    stroke-dashoffset: 0; /* El trazo se dibuja hasta completarse */
+    fill: transparent; /* Sigue siendo transparente mientras se dibuja */
+  }
+  100% {
+    stroke-dashoffset: 0; /* El trazo sigue visible */
+    fill: #fff; /* Relleno blanco cuando el trazo está completo */
+  }
+}
+
+.enlace-flex {
+  display: none;
+  display: flex; /* Usa flexbox para alinear los elementos */
+  align-items: center; /* Alinea verticalmente la imagen y el texto */
+  justify-content: flex-end; /* Mueve el contenido a la derecha */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  padding-right: 20px; /* Agrega padding a la derecha */
+  transition: opacity 1s ease-in-out;
+}
+
+.imagen-derecha {
+  width: 250px; /* Aumenta el tamaño de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin-left: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.enlace-flex {
+  font-size: 70px; /* Aumenta el tamaño del texto */
+  color: #fff; /* Cambia el color del texto, si lo necesitas */
+}
+
+
+
+#Footer_group_1_,
+[id^=PinkFlowerGroup],
+[id^=BaseGroup] path,
+[id^=LeafGroup] path,
+path[id^=Stroke],
+g[id^=BudGroup] g[id^=BudGroup] g[id^=Bud],
+#Bud8_1_,
+#Bud10_1_,
+#Bud23_1_,
+#Bud26_1_,
+[id^=Dots],
+[id^=Flourish] {
+  visibility: hidden;
+}
